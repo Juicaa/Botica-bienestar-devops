@@ -1,0 +1,45 @@
+name: CI Botica Bienestar
+
+on:
+  push:
+    branches: [backend, frontend, devops]  # El flujo se ejecutará al hacer push en estas ramas
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest  # Usamos una máquina virtual Ubuntu proporcionada por GitHub
+
+    steps:
+      # 1️⃣ Clonar el repositorio para trabajar con el código actualizado
+      - name: 🔄 Clonar el repositorio
+        uses: actions/checkout@v3
+
+      # 2️⃣ Configurar PHP versión 8.1 para validar archivos PHP
+      - name: 🐘 Configurar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      # 3️⃣ Validar archivo de conexión en backend
+      - name: ✅ Validar backend (Conexion.php)
+        run: php -l backend/Conexion.php
+
+      # 4️⃣ Verificar que exista la carpeta frontend y su estructura
+      - name: 📁 Verificar estructura del frontend
+        run: |
+          ls frontend/
+          ls frontend/multimedia/ || echo "⚠️ Carpeta multimedia no encontrada"
+
+      # 5️⃣ Validar archivos específicos del frontend (login.html, estilo.css)
+      - name: 🔍 Validar archivos del frontend
+        run: |
+          if [ -f "frontend/login.html" ]; then echo "✅ login.html encontrado"; else echo "❌ login.html no encontrado"; fi
+          if [ -f "frontend/estilo.css" ]; then echo "✅ estilo.css encontrado"; else echo "❌ estilo.css no encontrado"; fi
+
+      # 6️⃣ Validar sintaxis del archivo docker-compose.yml (si existe)
+      - name: 🐳 Validar docker-compose.yml
+        run: |
+          if [ -f "docker-compose.yml" ]; then
+            docker-compose -f docker-compose.yml config
+          else
+            echo "⚠️ docker-compose.yml no encontrado"
+          fi
