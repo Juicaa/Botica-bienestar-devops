@@ -1,20 +1,17 @@
 <?php
-// Parámetros de conexión
-$host = "localhost";
-$usuario = "root";
-$contrasena = "alexander06";
-$baseDeDatos = "BoticaBienestar"; 
+$host = "localhost";           // o 127.0.0.1
+$usuario = "root";             // cambia si usas otro usuario
+$contrasena = "";              // cambia si tienes contraseña en MySQL
+$base_datos = "BoticaBienestar";
 
-// Crear la conexión
-$conn = new mysqli($host, $usuario, $contrasena, $baseDeDatos);
+$conexion = new mysqli($host, $usuario, $contrasena, $base_datos);
 
 // Verificar conexión
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+if ($conexion->connect_error) {
+    die("Conexión fallida: " . $conexion->connect_error);
 }
 
-echo "Conexión exitosa a la base de datos";
-
-// Cerrar conexión (opcional aquí)
-$conn->close();
+// Opcional: establecer codificación utf8
+$conexion->set_charset("utf8");
 ?>
+
