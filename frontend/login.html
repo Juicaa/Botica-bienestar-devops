@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Botica Bienestar - Login</title>
+    <meta name="description" content="Login personalizado" />
+    <meta name="author" content="Botica Bienestar" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="estilo.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card login-card">
+        <div class="card-body">
+          <!-- Logo -->
+          <div class="text-center mb-3">
+            <img src="multimedia/logo_botica.png" alt="Botica Bienestar y Salud" class="login-logo" />
+          </div>
+
+          <h4 class="text-center mb-4 font-weight-bold text-success">Iniciar Sesión</h4>
+
+          <!-- Formulario -->
+          <form class="login-form">
+            <input class="form-control" type="text" placeholder="Usuario" required />
+            <input class="form-control" type="password" placeholder="Contraseña" required />
+
+            <div class="form-check text-left mb-3">
+              <input class="form-check-input" type="checkbox" id="rememberCheck" />
+              <label class="form-check-label" for="rememberCheck">Recordarme</label>
+            </div>
+
+            <button class="btn btn-primary btn-block" type="submit">Iniciar Sesión</button>
+
+            <div class="card-footer d-flex justify-content-between mt-4">
+              <a href="#"><i class="mdi mdi-lock"></i> ¿Olvidaste tu contraseña?</a>
+              <a href="#"><i class="mdi mdi-account-circle"></i> Crear cuenta</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
