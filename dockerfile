@@ -1,18 +1,14 @@
-# Usa una imagen base de PHP con Apache
+# Usa la imagen base de PHP con Apache
 FROM php:8.0-apache
 
-# Habilita los módulos de Apache necesarios
+# Habilita el módulo rewrite de Apache
 RUN a2enmod rewrite
 
-# Establece el directorio de trabajo dentro del contenedor
-WORKDIR /var/www/html
+# Copia tus archivos del proyecto al contenedor
+COPY . /var/www/html/
 
-# Copia los archivos del proyecto desde el host al contenedor
-COPY . .
+# Configuración para manejar index.php correctamente
+RUN echo "DirectoryIndex index.php" >> /etc/apache2/mods-enabled/dir.conf
 
-
-# Exponer el puerto 80 para que Apache escuche en el puerto 80
+# Exponer el puerto
 EXPOSE 80
-
-# Comando para ejecutar Apache en primer plano
-CMD ["apache2-foreground"]
