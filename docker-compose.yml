@@ -11,7 +11,3 @@ services:
       - VIRTUAL_HOST=botica-bienestar-devops.onrender.com
     networks:
       - default
-
-networks:
-  default:
-    driver: bridge
