@@ -1,16 +1,15 @@
 <?php
-$host = "localhost";           // o 127.0.0.1
-$usuario = "root";             // cambia si usas otro usuario
-$contrasena = "";              // cambia si tienes contraseña en MySQL
-$base_datos = "BoticaBienestar";
+// Leer la variable de entorno DATABASE_URL configurada en Render
+$databaseUrl = getenv('DATABASE_URL');
 
-$conexion = new mysqli($host, $usuario, $contrasena, $base_datos);
+// Usar esta variable para conectar con la base de datos
+$pdo = new PDO($databaseUrl);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Verificar conexión
-if ($conexion->connect_error) {
-    die("Conexión fallida: " . $conexion->connect_error);
+// Verificar si la conexión fue exitosa
+if ($pdo) {
+    echo "Conexión exitosa!";
+} else {
+    echo "Error en la conexión.";
 }
-
-// Opcional: establecer codificación utf8
-$conexion->set_charset("utf8");
 ?>
